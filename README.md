@@ -9,6 +9,7 @@ services:
     protonwire:
         <YOUR-PROTONWIRE-CONFIG>
     qbittorrent:
+        network_mode: service:protonwire
         <YOUR-QBITTORRENT-CONFIG>
 
     port-forwarder:
