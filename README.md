@@ -1,12 +1,15 @@
 # qbittorrent-port-forwarder
 
 A little container to update the port of qBittorrent when using a VPN forwarded port.
-It is build for protonwire, but should work with any vpn that supports port forwarding.
+It is build for ProtonVPN, but should work with any vpn that supports port forwarding.
+
+# ProtonVPN
+Follow [these instructions](https://github.com/tprasadtp/protonvpn-docker#generating-wireguard-private-key) on creating a private key. Make sure you enable `NAT-PMP (Port Forwarding)`.
 
 # Docker Compose
 ```yml
 services:
-    protonwire:
+    protonwire: # use any vpn that supports port forwarding
         <YOUR-PROTONWIRE-CONFIG>
     qbittorrent:
         network_mode: service:protonwire
