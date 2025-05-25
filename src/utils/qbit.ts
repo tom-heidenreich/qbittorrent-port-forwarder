@@ -1,4 +1,8 @@
 import { $ } from "bun";
+import { env } from "./env";
+import z from "zod/v4";
+
+const Host = z.templateLiteral([z.string(), ":", z.int().positive().lt(65535)]);
 
 export class QBitClient {
   private readonly host: string;
@@ -6,19 +10,9 @@ export class QBitClient {
   private readonly password: string;
 
   constructor() {
-    if (!process.env.QBIT_HOST)
-      throw Error("Environment variable QBIT_HOST is required!");
-    this.host = process.env.QBIT_HOST;
-
-    if (!process.env.QBIT_USERNAME)
-      throw Error("Environment variable QBIT_USERNAME is required!");
-    this.username = process.env.QBIT_USERNAME;
-
-    if (!process.env.QBIT_PASSWORD) {
-      // TODO: use docker secret instead
-      throw Error("Environment variable QBIT_PASSWORD is required!");
-    }
-    this.password = process.env.QBIT_PASSWORD;
+    this.host = env("QBIT_HOST", Host.parse);
+    this.username = env("QBIT_USERNAME", z.string().parse);
+    this.password = env("QBIT_PASSWORD", z.string().parse);
   }
 
   public async auth(): Promise<QBitConnection> {
