@@ -1,5 +1,5 @@
 import { sleep } from "bun";
-import type { QBitConnection } from "../utils";
+import type { QBitConnection } from "../utils/qbit";
 
 export default abstract class Provider {
   private running: boolean = false;

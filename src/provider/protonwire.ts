@@ -1,6 +1,6 @@
 import { $ } from "bun";
 import Provider from ".";
-import { type QBitConnection } from "../utils";
+import { type QBitConnection } from "../utils/qbit";
 
 async function getForwardedPort() {
   return (

@@ -1,9 +1,5 @@
 import { $ } from "bun";
 
-export async function getForwardedPort() {
-    return (await $`natpmpc -a 1 0 tcp 60 -g 10.2.0.1 | grep -oP 'public\ port\ \K\w+'`.text()).trim()
-}
-
 export class QBitClient {
     
     private readonly host: string
