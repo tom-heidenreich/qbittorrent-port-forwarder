@@ -1,10 +1,9 @@
-FROM oven/bun:1.1
+FROM oven/bun:1
 
 # dependencies
-RUN apt update -y
-RUN apt upgrade -y
-RUN apt install curl -y
-RUN apt install natpmpc -y
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends curl natpmpc \
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
