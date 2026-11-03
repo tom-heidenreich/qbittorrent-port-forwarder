@@ -24,6 +24,5 @@ services:
         restart: 'unless-stopped'
         environment:
         - QBIT_HOST=localhost:8080  # use localhost instead of container name
-        - QBIT_USERNAME=<YOUR-QBITTORRENT-USERNAME>
-        - QBIT_PASSWORD=<YOUR-QBITTORRENT-PASSWORD>
+        - QBIT_API_KEY=123
 ```
