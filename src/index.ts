@@ -2,22 +2,19 @@ import { $, sleep } from "bun";
 import { getForwardedPort, QBitClient } from "./utils";
 
 // login to qbit client
-const client = new QBitClient();
-const api = await client.auth()
-console.log('Successfull login to client!');
+const api = new QBitClient();
 
-while(true) {
-    try {
-        const port = await getForwardedPort()
-        console.log(`Port Forward enabled at port ${port}`);
-        
-        await api.setListenPort(port)
-        console.log(`Updated listenPort successfully!`);
+while (true) {
+  try {
+    const port = await getForwardedPort();
+    console.log(`Port Forward enabled at port ${port}`);
 
-        console.log(`Will renew in 45 seconds...`);
-        await sleep(45000)
+    await api.setListenPort(port);
+    console.log(`Updated listenPort successfully!`);
 
-    } catch(e) {
-        console.log(`Encounter error: ${e}. Retrying in 20 seconds...`);
-    }
+    console.log(`Will renew in 45 seconds...`);
+    await sleep(45000);
+  } catch (e) {
+    console.log(`Encounter error: ${e}. Retrying in 20 seconds...`);
+  }
 }
